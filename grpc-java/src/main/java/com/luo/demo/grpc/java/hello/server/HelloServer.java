@@ -35,6 +35,7 @@ public class HelloServer {
     public void start(Integer port) throws IOException {
         //启动gRPC Server
         this.server = ServerBuilder.forPort(port)
+                //注册服务端实现类
                 .addService(new HelloGrpcImpl())
                 .build()
                 .start();

@@ -38,11 +38,11 @@ public class HelloClient {
     /**
      * 阻塞Hello客户端（仅支持Unary、Server Stream）
      */
-    HelloGrpc.HelloBlockingStub helloBlockingStub;
+    private HelloGrpc.HelloBlockingStub helloBlockingStub;
     /**
      * 非阻塞Hello客户端（全部仅支持Unary、Server Stream、Client Stream、BiDirection Stream）
      */
-    HelloGrpc.HelloStub helloStub;
+    private HelloGrpc.HelloStub helloStub;
 
     /**
      * 客户端初始化
