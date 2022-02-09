@@ -24,6 +24,8 @@
         <protoc.version>3.19.2</protoc.version>
         <gson.version>2.8.9</gson.version>
         <lombok.version>1.18.20</lombok.version>
+        <spring.boot.version>2.6.3</spring.boot.version>
+        <grpc.spring.boot.version>2.13.1.RELEASE</grpc.spring.boot.version>
     </properties>
 
     <dependencyManagement>
@@ -35,6 +37,22 @@
                 <version>${grpc.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <!-- Import dependency management from Spring Boot -->
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- gRPC springboot依赖 -->
+            <dependency>
+                <groupId>net.devh</groupId>
+                <artifactId>grpc-spring-boot-starter</artifactId>
+                <version>${grpc.spring.boot.version}</version>
             </dependency>
 
             <!-- 通用模块依赖 -->
@@ -62,122 +80,9 @@
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
             </dependency>
-            <!--      <dependency>-->
-            <!--        <groupId>com.google.code.gson</groupId>-->
-            <!--        <artifactId>gson</artifactId>-->
-            <!--        <version>2.8.9</version> &lt;!&ndash; prevent downgrade via protobuf-java-util &ndash;&gt;-->
-            <!--      </dependency>-->
-            <!--      <dependency>-->
-            <!--        <groupId>org.apache.tomcat</groupId>-->
-            <!--        <artifactId>annotations-api</artifactId>-->
-            <!--        <version>6.0.53</version>-->
-            <!--        <scope>provided</scope> &lt;!&ndash; not needed at runtime &ndash;&gt;-->
-            <!--      </dependency>-->
-
 
         </dependencies>
 
 
     </dependencyManagement>
-
-    <!--  <dependencies>-->
-
-    <!--    &lt;!&ndash; gRPC依赖 &ndash;&gt;-->
-    <!--    <dependency>-->
-    <!--      <groupId>io.grpc</groupId>-->
-    <!--      <artifactId>grpc-netty-shaded</artifactId>-->
-    <!--      <scope>runtime</scope>-->
-    <!--    </dependency>-->
-    <!--    <dependency>-->
-    <!--      <groupId>io.grpc</groupId>-->
-    <!--      <artifactId>grpc-protobuf</artifactId>-->
-    <!--    </dependency>-->
-    <!--    <dependency>-->
-    <!--      <groupId>io.grpc</groupId>-->
-    <!--      <artifactId>grpc-stub</artifactId>-->
-    <!--    </dependency>-->
-
-    <!--    &lt;!&ndash; protobuf依赖 &ndash;&gt;-->
-    <!--    <dependency>-->
-    <!--      <groupId>com.google.protobuf</groupId>-->
-    <!--      <artifactId>protobuf-java-util</artifactId>-->
-    <!--      <version>${protobuf.version}</version>-->
-    <!--    </dependency>-->
-    <!--    <dependency>-->
-    <!--      <groupId>com.google.code.gson</groupId>-->
-    <!--      <artifactId>gson</artifactId>-->
-    <!--      <version>2.8.9</version> &lt;!&ndash; prevent downgrade via protobuf-java-util &ndash;&gt;-->
-    <!--    </dependency>-->
-    <!--&lt;!&ndash;    <dependency>&ndash;&gt;-->
-    <!--&lt;!&ndash;      <groupId>org.apache.tomcat</groupId>&ndash;&gt;-->
-    <!--&lt;!&ndash;      <artifactId>annotations-api</artifactId>&ndash;&gt;-->
-    <!--&lt;!&ndash;      <version>6.0.53</version>&ndash;&gt;-->
-    <!--&lt;!&ndash;      <scope>provided</scope> &lt;!&ndash; not needed at runtime &ndash;&gt;&ndash;&gt;-->
-    <!--&lt;!&ndash;    </dependency>&ndash;&gt;-->
-    <!--&lt;!&ndash;    <dependency>&ndash;&gt;-->
-    <!--&lt;!&ndash;      <groupId>io.grpc</groupId>&ndash;&gt;-->
-    <!--&lt;!&ndash;      <artifactId>grpc-testing</artifactId>&ndash;&gt;-->
-    <!--&lt;!&ndash;      <scope>test</scope>&ndash;&gt;-->
-    <!--&lt;!&ndash;    </dependency>&ndash;&gt;-->
-    <!--&lt;!&ndash;    <dependency>&ndash;&gt;-->
-    <!--&lt;!&ndash;      <groupId>junit</groupId>&ndash;&gt;-->
-    <!--&lt;!&ndash;      <artifactId>junit</artifactId>&ndash;&gt;-->
-    <!--&lt;!&ndash;      <version>4.12</version>&ndash;&gt;-->
-    <!--&lt;!&ndash;      <scope>test</scope>&ndash;&gt;-->
-    <!--&lt;!&ndash;    </dependency>&ndash;&gt;-->
-    <!--&lt;!&ndash;    <dependency>&ndash;&gt;-->
-    <!--&lt;!&ndash;      <groupId>org.mockito</groupId>&ndash;&gt;-->
-    <!--&lt;!&ndash;      <artifactId>mockito-core</artifactId>&ndash;&gt;-->
-    <!--&lt;!&ndash;      <version>3.4.0</version>&ndash;&gt;-->
-    <!--&lt;!&ndash;      <scope>test</scope>&ndash;&gt;-->
-    <!--&lt;!&ndash;    </dependency>&ndash;&gt;-->
-    <!--  </dependencies>-->
-
-    <!--  <build>-->
-    <!--    <extensions>-->
-    <!--      <extension>-->
-    <!--        <groupId>kr.motd.maven</groupId>-->
-    <!--        <artifactId>os-maven-plugin</artifactId>-->
-    <!--        <version>1.6.2</version>-->
-    <!--      </extension>-->
-    <!--    </extensions>-->
-    <!--    <plugins>-->
-    <!--      <plugin>-->
-    <!--        <groupId>org.xolstice.maven.plugins</groupId>-->
-    <!--        <artifactId>protobuf-maven-plugin</artifactId>-->
-    <!--        <version>0.6.1</version>-->
-    <!--        <configuration>-->
-    <!--          <protocArtifact>com.google.protobuf:protoc:${protoc.version}:exe:${os.detected.classifier}</protocArtifact>-->
-    <!--          <pluginId>grpc-java</pluginId>-->
-    <!--          <pluginArtifact>io.grpc:protoc-gen-grpc-java:${grpc.version}:exe:${os.detected.classifier}</pluginArtifact>-->
-    <!--        </configuration>-->
-    <!--        <executions>-->
-    <!--          <execution>-->
-    <!--            <goals>-->
-    <!--              <goal>compile</goal>-->
-    <!--              <goal>compile-custom</goal>-->
-    <!--            </goals>-->
-    <!--          </execution>-->
-    <!--        </executions>-->
-    <!--      </plugin>-->
-    <!--      <plugin>-->
-    <!--        <groupId>org.apache.maven.plugins</groupId>-->
-    <!--        <artifactId>maven-enforcer-plugin</artifactId>-->
-    <!--        <version>1.4.1</version>-->
-    <!--        <executions>-->
-    <!--          <execution>-->
-    <!--            <id>enforce</id>-->
-    <!--            <goals>-->
-    <!--              <goal>enforce</goal>-->
-    <!--            </goals>-->
-    <!--            <configuration>-->
-    <!--              <rules>-->
-    <!--                <requireUpperBoundDeps/>-->
-    <!--              </rules>-->
-    <!--            </configuration>-->
-    <!--          </execution>-->
-    <!--        </executions>-->
-    <!--      </plugin>-->
-    <!--    </plugins>-->
-    <!--  </build>-->
 </project>
