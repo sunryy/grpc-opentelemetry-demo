@@ -1,6 +1,8 @@
 package com.luo.demo.grpc.sb.client;
 
 import com.luo.demo.grpc.sb.client.hello.HelloClientService;
+import com.luo.demo.grpc.sb.client.hello.HelloPromithusService;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -24,11 +26,16 @@ public class GrpcClientApplication implements CommandLineRunner {
     @Resource
     private HelloClientService helloClientService;
 
+    @Resource
+    private HelloPromithusService helloPromiService;
+
     @Override
     public void run(String... args) throws Exception {
-        this.helloClientService.sayHello();
-        this.helloClientService.sayHelloServerStream();
-        this.helloClientService.sayHelloClientStream();
-        this.helloClientService.sayHelloBiStream();
+        // this.helloClientService.sayHello();
+        // this.helloClientService.sayHelloServerStream();
+        // this.helloClientService.sayHelloClientStream();
+        // this.helloClientService.sayHelloBiStream();
+
+        helloPromiService.sendMetrics();
     }
 }

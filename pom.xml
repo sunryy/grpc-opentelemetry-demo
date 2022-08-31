@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.luo.demo</groupId>
     <artifactId>grpc-demo</artifactId>
@@ -14,6 +13,24 @@
     </modules>
     <name>grpc-demo</name>
     <url>https://gitee.com/luoex/grpc-demo.git</url>
+
+    <!-- 仓库 -->
+    <repositories>
+        <repository>
+            <id>public</id>
+            <name>Central Repository</name>
+            <url>http://10.50.208.215:8603/nexus/content/groups/public</url>
+        </repository>
+    </repositories>
+
+    <!-- 插件仓库 -->
+    <pluginRepositories>
+        <pluginRepository>
+            <id>public</id>
+            <name>Central Repository</name>
+            <url>http://10.50.208.215:8603/nexus/content/groups/public</url>
+        </pluginRepository>
+    </pluginRepositories>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
