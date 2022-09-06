@@ -20,10 +20,10 @@ import java.util.Iterator;
 @Slf4j
 public class HelloClientService {
 
-    @GrpcClient("grpc-sb-server")
+    @GrpcClient("MetricsService")
     private HelloGrpc.HelloBlockingStub helloBlockingStub;
 
-    @GrpcClient("grpc-sb-server")
+    @GrpcClient("MetricsService")
     private HelloGrpc.HelloStub helloStub;
 
     /**

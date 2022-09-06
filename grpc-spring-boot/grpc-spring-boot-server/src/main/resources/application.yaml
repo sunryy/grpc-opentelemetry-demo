@@ -1,6 +1,6 @@
 spring:
   application:
-    name: grpc-sb-server
+    name: MetricsService
 
 grpc:
   # grpc server相关配置

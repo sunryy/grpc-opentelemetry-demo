@@ -36,6 +36,6 @@ public class GrpcClientApplication implements CommandLineRunner {
         // this.helloClientService.sayHelloClientStream();
         // this.helloClientService.sayHelloBiStream();
 
-        helloPromiService.sendMetrics();
+         helloPromiService.sendMetrics();
     }
 }

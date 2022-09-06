@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import io.opentelemetry.proto.collector.metrics.v1.ExportMetricsServiceRequest;
 import io.opentelemetry.proto.collector.metrics.v1.ExportMetricsServiceResponse;
 import io.opentelemetry.proto.collector.metrics.v1.MetricsServiceGrpc;
+import io.opentelemetry.proto.common.v1.AnyValue;
+import io.opentelemetry.proto.common.v1.KeyValue;
 import io.opentelemetry.proto.metrics.v1.Gauge;
 import io.opentelemetry.proto.metrics.v1.InstrumentationLibraryMetrics;
 import io.opentelemetry.proto.metrics.v1.Metric;
@@ -18,16 +20,29 @@ import net.devh.boot.grpc.client.inject.GrpcClient;
 @Slf4j
  
 public class HelloPromithusService {
-    @GrpcClient("grpc-sb-server")
+    @GrpcClient("MetricsService")
     private MetricsServiceGrpc.MetricsServiceBlockingStub helloBlockingStub;
 
-    @GrpcClient("grpc-sb-server")
+    @GrpcClient("MetricsService")
     private MetricsServiceGrpc.MetricsServiceStub helloStub;
 
     public void sendMetrics(){
-        NumberDataPoint numdp = NumberDataPoint.newBuilder()
-                                .setStartTimeUnixNano(1661932734)
-                                .build();
+      AnyValue av1 = AnyValue.newBuilder().setIntValue(1).build();
+      KeyValue kv1 = KeyValue.newBuilder()
+                    .setKey("spu_inst_id")
+                    .setValue(av1)
+                    .build();
+      AnyValue av2 = AnyValue.newBuilder().setStringValue("172.16.200.125:12000").build();
+      KeyValue kv2 = KeyValue.newBuilder()
+                    .setKey("eureka_node")
+                    .setValue(av2)
+                    .build();
+      NumberDataPoint numdp = NumberDataPoint.newBuilder()
+                    .setStartTimeUnixNano(1661932734)
+                    .addAttributes(kv1)
+                    .addAttributes(kv2)
+                    .setAsDouble(20.1)
+                    .build();
 
         Gauge gauge = Gauge.newBuilder()
                         .addDataPoints(numdp)
